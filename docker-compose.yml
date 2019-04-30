@@ -1,54 +1,40 @@
 version: '2'
 services:
     redis:
-        image: redis
+        image: redis:3
+
     db:
-        image: mariadb
+        image: mariadb:10.3
         command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-        ports:
-            - 3410:3306
         environment:
             - "MYSQL_RANDOM_ROOT_PASSWORD=1"
-            - "MYSQL_DATABASE=${DB_NAME}"
-            - "MYSQL_USER=${DB_USER}"
-            - "MYSQL_PASSWORD=${DB_PASSWORD}"
-        logging:
-            driver: "json-file"
-            options:
-              max-size: "10m"
-              max-file: "50"
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+
     app:
         build:
             context: ./docker/app
             args:
                 - XDEBUG
         working_dir: /var/www/app
+        user: $CONTAINER_USER
         links:
             - redis
             - db
         volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - ./docker/app/app.ini:/usr/local/etc/php/conf.d/app.ini:ro
+            - ./docker/app/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
             - ./:/var/www/app:rw
-        logging:
-            driver: "json-file"
-            options:
-              max-size: "10m"
-              max-file: "50"
-        environment:
-            - "REDIS_HOST=redis"
-            - "DB_NAME"
-            - "DB_USER"
-            - "DB_PASSWORD"
+
     web:
-        build: ./docker/web
+        image: nginx
         restart: unless-stopped
         ports:
-            - 8080:80
+            - $LISTEN_WEB:80
         links:
             - app
+        volumes:
+          - ./docker/web/app.conf:/etc/nginx/conf.d/app.conf:ro
         volumes_from:
             - app
-        logging:
-            driver: "json-file"
-            options:
-              max-size: "10m"
-              max-file: "50"

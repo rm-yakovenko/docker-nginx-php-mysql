@@ -3,10 +3,8 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - sudo curl -Lo /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m`
-  - sudo chmod +x /usr/local/bin/docker-compose
-
 script:
+  - cp .env.dist .env
   - XDEBUG=1 docker-compose build
   - docker-compose run --rm app php -i
+  - curl -f localhost:8080
