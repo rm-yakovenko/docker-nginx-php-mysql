@@ -29,7 +29,6 @@ services:
 
     web:
         image: nginx
-        restart: unless-stopped
         ports:
             - $LISTEN_WEB:80
         links:
