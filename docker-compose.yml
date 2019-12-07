@@ -17,7 +17,8 @@ services:
             args:
                 - XDEBUG
         working_dir: /var/www/app
-        user: $CONTAINER_USER
+        environment:
+            - CONTAINER_USER
         links:
             - redis
             - db
