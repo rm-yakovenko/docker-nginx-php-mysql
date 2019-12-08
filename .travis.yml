@@ -6,7 +6,7 @@ services:
 script:
   - cp .env.dist .env
   - XDEBUG=1 docker-compose build
-  - docker-compose run --rm app php -i
+  - docker/console php -i
   - docker-compose up -d
   - curl -f localhost:8080
   - docker/console id
