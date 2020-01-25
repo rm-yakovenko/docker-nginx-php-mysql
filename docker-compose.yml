@@ -7,7 +7,10 @@ services:
         image: mariadb:10.3
         command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
         environment:
-            - "MYSQL_RANDOM_ROOT_PASSWORD=1"
+            - "MYSQL_ROOT_PASSWORD"
+            - "MYSQL_DATABASE=app"
+        ports:
+            - 127.0.0.1:13306:3306
         volumes:
             - /etc/localtime:/etc/localtime:ro
 
