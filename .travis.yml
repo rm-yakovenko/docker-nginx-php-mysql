@@ -4,6 +4,7 @@ services:
   - docker
 
 script:
+  - export MYSQL_ROOT_PASSWORD=root
   - cp .env.dist .env
   - XDEBUG=1 docker-compose build
   - docker/console php -i
