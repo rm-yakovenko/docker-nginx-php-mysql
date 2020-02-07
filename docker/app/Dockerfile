@@ -13,6 +13,9 @@ RUN apt-get -y -qq update && \
     curl -Lo /usr/bin/composer https://getcomposer.org/composer.phar && \
     chmod +x /usr/bin/composer
 
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash && \
+    apt-get install -y nodejs
+
 RUN useradd -m app
 
 ARG XDEBUG
