@@ -9,8 +9,9 @@ RUN apt-get -y -qq update && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/* && \
     rm -rf /var/cache/apt/* && \
-    rm -rf /tmp/* && \
-    curl -Lo /usr/bin/composer https://getcomposer.org/composer.phar && \
+    rm -rf /tmp/*
+
+RUN curl -Lo /usr/bin/composer https://getcomposer.org/composer-stable.phar && \
     chmod +x /usr/bin/composer
 
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash && \
