@@ -9,8 +9,6 @@ services:
         environment:
             - "MYSQL_ROOT_PASSWORD"
             - "MYSQL_DATABASE=app"
-        ports:
-            - 127.0.0.1:13306:3306
         volumes:
             - /etc/localtime:/etc/localtime:ro
 
@@ -28,13 +26,10 @@ services:
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - ./docker/app/app.ini:/usr/local/etc/php/conf.d/app.ini:ro
-            - ./docker/app/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
             - ./:/var/www/app:rw
 
     web:
         image: nginx
-        ports:
-            - $LISTEN_WEB:80
         links:
             - app
         volumes:
