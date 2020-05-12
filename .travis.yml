@@ -7,6 +7,7 @@ script:
   - export MYSQL_ROOT_PASSWORD=root
   - cp .env.dist .env
   - XDEBUG=1 docker-compose build
+  - ln -sr docker-compose.dev.yml docker-compose.override.yml
   - docker/console php -i
   - docker-compose up -d
   - curl -f localhost:8080
