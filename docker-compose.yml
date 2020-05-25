@@ -12,7 +12,7 @@ services:
         volumes:
             - /etc/localtime:/etc/localtime:ro
 
-    app:
+    app_base:
         build:
             context: ./docker/app
             args:
@@ -20,6 +20,9 @@ services:
         working_dir: /var/www/app
         environment:
             - CONTAINER_USER
+
+    app:
+        extends: app_base
         links:
             - redis
             - db
