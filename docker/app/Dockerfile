@@ -1,8 +1,8 @@
-FROM php:7.3-fpm-stretch
+FROM php:7-fpm
 
 RUN apt-get -y -qq update && \
     apt-get -y -qq install --no-install-recommends gosu git unzip libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev libxml2-dev libxslt-dev --no-install-recommends && \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
+    docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
     docker-php-ext-install -j$(nproc) pdo_mysql bcmath gd intl opcache zip soap xsl && \
     pecl install apcu && \
     docker-php-ext-enable apcu && \
