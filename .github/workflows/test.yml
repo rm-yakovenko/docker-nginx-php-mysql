@@ -24,7 +24,7 @@ jobs:
           export MYSQL_ROOT_PASSWORD=root
           ln -sr docker-compose.dev.yml docker-compose.override.yml
           docker/console php -i
-          docker-compose up -d
+#          docker-compose up -d
           curl -f localhost:8080
           docker/console id
           docker/redis-cli info
