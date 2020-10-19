@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          cp .env.dist .env
+          XDEBUG=1 docker-compose build
+
+      - name: Test
+        run: |
+          export MYSQL_ROOT_PASSWORD=root
+          ln -sr docker-compose.dev.yml docker-compose.override.yml
+          docker/console php -i
+          docker-compose up -d
+          curl -f localhost:8080
+          docker/console id
+          docker/redis-cli info
+          docker/console node --version
