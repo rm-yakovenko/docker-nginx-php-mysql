@@ -22,7 +22,6 @@ jobs:
       - name: Test
         run: |
           export MYSQL_ROOT_PASSWORD=root
-          export COMPOSE_INTERACTIVE_NO_CLI=1
           ln -sr docker-compose.dev.yml docker-compose.override.yml
           docker/console php -i
           docker-compose up -d
