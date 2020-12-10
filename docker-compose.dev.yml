@@ -5,9 +5,16 @@ services:
             - 127.0.0.1:13306:3306
 
     app:
+        links:
+            - mailhog
         volumes:
             - ./docker/app/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
 
     web:
         ports:
             - $LISTEN_WEB:80
+
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - 127.0.0.1:8025:8025
