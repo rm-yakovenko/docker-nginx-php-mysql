@@ -30,3 +30,4 @@ jobs:
           docker/console id
           docker/redis-cli info
           docker/console node --version
+          docker/console curl -s mailhog:8025 >/dev/null
