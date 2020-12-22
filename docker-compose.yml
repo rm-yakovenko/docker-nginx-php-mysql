@@ -17,9 +17,8 @@ services:
             context: ./docker/app
             args:
                 - XDEBUG
+                - CONTAINER_USER
         working_dir: /var/www/app
-        environment:
-            - CONTAINER_USER
 
     app:
         extends: app_base
