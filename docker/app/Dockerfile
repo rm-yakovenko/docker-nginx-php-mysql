@@ -14,7 +14,7 @@ RUN apt-get -y update && \
 RUN curl -Lo /usr/bin/composer https://getcomposer.org/composer-stable.phar && \
     chmod +x /usr/bin/composer
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash && \
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash && \
     apt-get install -y nodejs
 
 ARG CONTAINER_USER
