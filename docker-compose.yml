@@ -18,7 +18,6 @@ services:
             args:
                 - XDEBUG
                 - CONTAINER_USER
-                - PHP_VERSION
         working_dir: /var/www/app
 
     app:
