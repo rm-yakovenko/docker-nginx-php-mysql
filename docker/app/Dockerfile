@@ -1,4 +1,6 @@
-FROM php:7-fpm
+ARG PHP_VERSION=8.0
+
+FROM php:$PHP_VERSION-fpm
 
 ARG PECL_EXTENSIONS="apcu redis"
 
