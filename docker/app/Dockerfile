@@ -31,4 +31,3 @@ ARG XDEBUG
 RUN if [ $XDEBUG ]; then pecl install xdebug && docker-php-ext-enable xdebug; fi
 
 USER app
-CMD ["php-fpm", "-F", "-R"]
