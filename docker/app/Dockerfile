@@ -5,7 +5,7 @@ FROM php:$PHP_VERSION-fpm
 ARG PECL_EXTENSIONS="apcu redis"
 
 RUN apt-get -y update && \
-    apt-get -y install --no-install-recommends git unzip libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev libxml2-dev libxslt-dev libwebp-dev && \
+    apt-get -y install --no-install-recommends git unzip libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev libxml2-dev libxslt-dev libwebp-dev python2 && \
     docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ --with-webp=/usr && \
     docker-php-ext-install -j$(nproc) pdo_mysql bcmath gd intl opcache zip soap xsl && \
     pecl install $PECL_EXTENSIONS && \
