@@ -8,7 +8,7 @@ Ready to run docker containers for php development.
 1. Configure `.env` if you need.
 1. Copy `.env`, `docker`, `docker-compose.dev.yml` and `docker-compose.yml` to your app's root folder.
 1. Enable dev mode `ln -sr docker-compose.dev.yml docker-compose.override.yml`.
-1. Run `docker-compose up -d`.
+1. Run `docker compose up -d`.
 1. Open in your browser http://localhost:8080/ to access the app.
 
 ## Useful tips
