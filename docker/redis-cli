@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose exec -T redis redis-cli $@
+docker compose exec -T redis redis-cli $@
