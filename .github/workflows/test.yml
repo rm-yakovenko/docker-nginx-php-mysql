@@ -17,7 +17,7 @@ jobs:
       - name: Build
         run: |
           cp .env.dist .env
-          XDEBUG=1 docker-compose build
+          XDEBUG=1 docker compose build
 
       - name: Test
         run: |
@@ -25,7 +25,7 @@ jobs:
           set -x
           ln -sr docker-compose.dev.yml docker-compose.override.yml
           docker/console php -i
-          docker-compose up -d
+          docker compose up -d
           curl -f localhost:8080
           docker/console id
           docker/redis-cli info
