@@ -26,6 +26,7 @@ jobs:
           ln -sr docker-compose.dev.yml docker-compose.override.yml
           docker/console php -i
           docker compose up -d
+          sleep 3
           curl -f localhost:8080
           docker/console id
           docker/redis-cli info
