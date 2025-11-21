@@ -18,7 +18,7 @@ RUN apt-get -y update && \
 RUN curl -Lo /usr/bin/composer https://getcomposer.org/composer-stable.phar && \
     chmod +x /usr/bin/composer
 
-ARG NODE_VERSION=22
+ARG NODE_VERSION=24
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
     apt-get install -y nodejs
