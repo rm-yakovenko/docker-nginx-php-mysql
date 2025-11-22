@@ -5,7 +5,7 @@ services:
 
     app:
         links:
-            - mailhog
+            - mailpit
         volumes:
             - ./docker/app/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
 
@@ -13,7 +13,7 @@ services:
         ports:
             - $LISTEN_WEB:80
 
-    mailhog:
-        image: mailhog/mailhog
+    mailpit:
+        image: axllent/mailpit
         ports:
             - 127.0.0.1:8025:8025
