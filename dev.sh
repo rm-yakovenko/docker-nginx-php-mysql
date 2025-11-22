@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker compose up --build app web mailhog
+docker compose up --build app web mailpit
