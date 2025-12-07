@@ -1,7 +1,7 @@
 services:
     db:
         ports:
-            - 127.0.0.1:13306:3306
+            - $LISTEN_DB:3306
 
     app:
         links:
@@ -16,4 +16,4 @@ services:
     mailpit:
         image: axllent/mailpit
         ports:
-            - 127.0.0.1:8025:8025
+            - $LISTEN_MAILPIT:8025
