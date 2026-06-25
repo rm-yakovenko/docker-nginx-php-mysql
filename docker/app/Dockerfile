@@ -11,7 +11,7 @@ RUN apt-get -y update && \
 ARG PECL_EXTENSIONS="apcu redis"
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ --with-webp=/usr && \
-    docker-php-ext-install -j$(nproc) pdo_mysql bcmath gd intl opcache zip soap xsl && \
+    docker-php-ext-install -j$(nproc) pdo_mysql bcmath gd intl zip soap xsl && \
     pecl install $PECL_EXTENSIONS && \
     docker-php-ext-enable $PECL_EXTENSIONS && \
     rm -rf /tmp/*
